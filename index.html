@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #67cf99;
+            height: 100vh; 
+        }
+
+        #useForm {
+            margin: 30px;
+            background-color: #fdf5e6; 
+            border-radius: 10px; 
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 40vw; 
+            text-align: center;
+        }
+
+        .head {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            width: 75%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #output {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        #output div {
+            background-color: #e0f7fa;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #output p {
+            margin: 0;
+            color: #333; 
+            font-size: 13px;
+        }
+
+        #output button {
+            background-color: #f44336; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #output button:hover {
+            background-color: #d32f2f; 
+}
+
+    </style>
+</head>
+<body>
+    <center>
+            <form id="useForm">
+                <p class="head">To Do List<p>
+                <input type="text" id = "taskContent" name = "task" placeholder="Add task" required>
+                <button type="submit">Submit</button>
+                <div id="output">
+
+                </div>
+            </form>
+    </center>
+
+    <script>
+        const displayTask = document.getElementById("output");
+        
+        document.getElementById('useForm').addEventListener("submit",(event) => {
+            event.preventDefault();
+            
+            const taskContent = document.getElementById("taskContent").value;
+            
+            const taskDiv = document.createElement("div");
+            
+            const taskText = document.createElement("p");
+            taskText.textContent = taskContent;
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.addEventListener("click",()=>{
+                displayTask.removeChild(taskDiv);
+            })
+
+            taskDiv.append(taskText);
+            taskDiv.append(deleteButton);
+
+            displayTask.appendChild(taskDiv);
+
+            document.getElementById("taskContent").value = "";
+        })
+    </script>
+</body>
+</html>
